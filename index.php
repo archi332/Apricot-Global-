@@ -3,7 +3,7 @@ include_once('auth.php');
 $auth = new auth();
 
 if (isset($_COOKIE['checked'])) {
-    header('Location: ' . $auth->getUrl('chat.php'));
+//    header('Location: ' . $auth->getUrl('chat.php'));
 }
 ?>
 <!DOCTYPE html>
