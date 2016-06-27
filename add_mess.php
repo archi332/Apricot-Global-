@@ -3,7 +3,7 @@ include("data_base.php");
 
 if(isset($_POST['text_message']) && $_POST['text_message']!="" && $_POST['text_message']!=" ")
 {
-	//Принимаем переменную сообщения
+
 	$message=$_POST['text_message'];
 	$user_id = (int) $_POST['sub'];
 

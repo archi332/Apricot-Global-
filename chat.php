@@ -21,50 +21,48 @@ if (!isset($_COOKIE['checked'])) {
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 
 <script type="text/javascript">
-    //Загружаем библиотеку JQuery
+
     google.load("jquery", "1.3.2");
     google.load("jqueryui", "1.7.2");
 
-    //Функция отправки сообщения
+
     function send() {
-        //Считываем сообщение из поля ввода с id mess_to_add
+
         var mess = $("#mess_to_send").val();
         var us_id = $("#user_id").val();
-        // Отсылаем паметры
+
         $.ajax({
             type: "POST",
             url: "add_mess.php",
-            data: {text_message : mess, sub : us_id},
-            // Выводим то что вернул PHP
+            data: {text_message: mess, sub: us_id},
+
             success: function (html) {
-                //Если все успешно, загружаем сообщения
+
                 load_messes();
-                //Очищаем форму ввода сообщения
+
                 $("#mess_to_send").val('');
             }
         });
     }
 
-    //Функция загрузки сообщений
+
     function load_messes() {
         $.ajax({
             type: "POST",
             url: "load_messes.php",
             data: "req=ok",
-            // Выводим то что вернул PHP
+
             success: function (html) {
-                //Очищаем форму ввода
+
                 $("#messages").empty();
-                //Выводим что вернул нам php
                 $("#messages").append(html);
-                //Прокручиваем блок вниз(если сообщений много)
                 $("#messages").scrollTop(90000);
             }
         });
     }
 
 </script>
-<div >
+<div>
     You logged as '<b> <?php echo $_COOKIE['checked']; ?></b> ' .
     <a href="ex.php">EXIT!</a>
 </div>
@@ -78,7 +76,9 @@ if (!isset($_COOKIE['checked'])) {
 
                 <p><textarea name="text_message" id="mess_to_send" required></textarea></p>
             </div>
-            <button type="submit" name="sub" id="user_id" value="<?php echo $work->getId($_COOKIE['checked']); ?>">Send</button>
+            <button type="submit" name="sub" id="user_id" value="<?php echo $work->getId($_COOKIE['checked']); ?>">
+                Send
+            </button>
         </form>
     </div>
 </div>
